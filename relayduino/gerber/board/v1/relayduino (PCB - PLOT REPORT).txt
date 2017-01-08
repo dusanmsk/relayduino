@@ -1,0 +1,192 @@
+PLOT REPORT
+-----------
+
+Report File:        G:\work\relayduino\relayduino\relayduino (PCB - PLOT REPORT).txt
+Report Written:     Sunday, January 08, 2017
+Design Path:        G:\work\relayduino\relayduino\relayduino.pcb
+Design Title:       
+Created:            11.12.2016 19:21:11
+Last Saved:         8.1.2017 19:48:49
+Editing Time:       1445 min
+Units:              mm (precision 2)
+
+
+Device Settings
+===============
+
+
+Gerber Settings
+===============
+
+    Leading zero suppression.
+    G01 assumed throughout.
+    Line termination <*> <CR> <LF>.
+    3.5 format absolute inches.
+    Format commands defined in Gerber file.
+    Aperture table defined in Gerber file.
+    Hardware arcs allowed.
+
+
+Drill Settings
+==============
+
+    Excellon Format 1    Format 3.5 absolute in mm.
+    No zero suppression.
+
+
+Plots Output
+============
+
+
+Gerber Output
+=============
+
+G:\work\relayduino\relayduino\relayduino - Top Documentation.gbr
+
+    Layers:
+    ---------------------
+    Top Documentation
+
+    D-Code Shape  (thou)
+    -----------------------
+    D21    Round 1.00
+
+Gerber Output
+=============
+
+G:\work\relayduino\relayduino\relayduino - Top Silkscreen.gbr
+
+    Layers:
+    ------------------
+    Top Silkscreen
+
+    D-Code Shape  (thou)
+    -----------------------
+    D11    Round 5.00
+    D12    Round 6.00
+    D13    Round 3.00
+    D14    Round 10.00
+    D21    Round 1.00
+
+Gerber Output
+=============
+
+G:\work\relayduino\relayduino\relayduino - Bottom Copper.gbr
+
+    Layers:
+    -----------------
+    Bottom Copper
+
+    D-Code Shape  (thou)
+    -----------------------
+    D18    Square 60.00
+    D70    Round 25.00
+    D71    Round 15.00
+    D20    Round 50.00
+    D23    Square 60.00
+    D24    Round 60.00
+    D25    Round 80.00
+    D76    Round 7.87
+    D77    Square 54.00
+    D78    Round 54.00
+    D79    Round 52.76
+
+Gerber Output
+=============
+
+G:\work\relayduino\relayduino\relayduino - Bottom Copper (Paste).gbr
+
+    Layers:
+    -----------------
+    Bottom Copper
+
+    D-Code Shape  (thou)
+    -----------------------
+
+Gerber Output
+=============
+
+G:\work\relayduino\relayduino\relayduino - Bottom Solder Mask.gbr
+
+    Layers:
+    ----------------------
+    Bottom Solder Mask
+
+    D-Code Shape  (thou)
+    -----------------------
+    D23    Square 60.00
+    D24    Round 60.00
+    D80    Round 124.11
+    D81    Square 66.00
+    D82    Square 66.00
+    D83    Round 66.00
+    D84    Round 86.00
+    D85    Round 58.76
+
+NC Drill Output
+===============
+
+G:\work\relayduino\relayduino\relayduino - Drill Data - [Through Hole].drl
+
+    Output:
+    ---------------------------
+    Plated Round Drill Holes
+    Plated Slots
+    Plated Board Outlines
+
+    Tool  Size         Count   ID
+    ------------------------------------
+    T001  000.03200 in 80    A
+    T002  000.03307 in 36    J
+    T003  000.03400 in 10    I
+    T004  000.03500 in 43    B
+    T005  000.05000 in 42    F
+    T006  000.11811 in 4     G
+    ------------------------------------
+    Total              215
+    ------------------------------------
+
+G:\work\relayduino\relayduino\relayduino - Drill Data - [Through Hole] (Unplated).drl
+
+    Output:
+    -----------------------------
+    Unplated Round Drill Holes
+    Unplated Slots
+    Unplated Board Outlines
+
+    Tool  Size         Count   ID
+    ------------------------------------
+    T001  000.02500 in 1
+    ------------------------------------
+    Total              1
+    ------------------------------------
+
+
+Gerber Output
+=============
+
+G:\work\relayduino\relayduino\relayduino - Drill Ident Drawing - [Through Hole].gbr
+
+    Layers:
+    ------------------
+    [Through Hole]
+
+
+Drill Ident Drawing
+===================
+
+    Drill Plated Size Shape ID
+    -----------------------------------
+    32    Y      100  Round A
+    35    Y      100  Round B
+    50    Y      100  Round F
+    118   Y      100  Round G
+    34    Y      100  Round I
+    33    Y      100  Round J
+
+    D-Code Shape  (thou)
+    -----------------------
+    D10    Round 100.00
+    D11    Round 5.00
+
+End Of Report.
