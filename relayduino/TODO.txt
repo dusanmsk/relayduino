@@ -1,3 +1,2 @@
 TODO:
-ok - presunut dip switch na hlavny board - riziko ze shield s nim nevojde vedla ethernetu.
-ok - presunut napajanie vedla dip switchu
+- co tak normalne natiahnut 4 draty a k nim prepojky od svabov do praveho uhla?
