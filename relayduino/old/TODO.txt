@@ -1,2 +1,0 @@
-TODO:
-ok - kondenzator na latch (tusim?) 100nF - Notice the 0.1"f capacitor on the latchPin, if you have some flicker when the latch pin pulses you can use a capacitor to even it out.
