@@ -1,0 +1,12 @@
+Relayduino:
+8x 8pin konektory   - mam 10            
+1x 4pin konektor    - mam 10
+8x ULN2003A         - na ceste
+8x SN74HC595N       - mam 8
+1x 7805             - na ceste
+1x R220             - mam
+1x R1k              - mam
+1x R10k             - mam
+1x LED              - mam
+1x mikrospinac      - mam 1
+1x C1u              - mam
