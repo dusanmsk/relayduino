@@ -86,8 +86,6 @@ void Board::runInitialConfigFlow() {
     // now flash led boardId-times to give user feedback and then store boardid into eeprom
     dbgf("Board id is %d" , boardId);
     delay(2000);
-    blinkBoardId();
-    delay(2000);
     dbgf("Storing board id %d to eeprom", boardId);
     EEPROM.write(EEPROM_BOARD_ID_OFFSET, boardId);
 }

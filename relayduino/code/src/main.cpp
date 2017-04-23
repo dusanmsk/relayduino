@@ -15,7 +15,7 @@
 #include "Configuration.h"
 #include "EEPROM.h"
 #include "Network.h"
-#include "Relays.h"
+#include "OutputPorts.h"
 #include "595.h"
 
 #include <avr/io.h>
@@ -26,21 +26,14 @@
 
 Board board(LED_PIN, CONFIG_BUTTON_PIN);
 Configuration cfg;
-Relays relays;
+OutputPorts outputPorts;
 Serial595 s595(DATA_PIN, OE_PIN, RCLK_PIN, SRCLK_PIN);
 
-
-void initialize() {
-  s595.setOutputEnable(false);
-  board.initialize();
-  board.blinkBoardId();
-}
-
 void shiftRelays() {
-  int relayIndex = 56;
+  int portIndex = 56;
   for(int i = 0; i < 8; i++) {
     for(int u = 0; u < 7; u++) {
-      bool value = relays.getRelay(relayIndex--);
+      bool value = outputPorts.getValue(portIndex--);
       s595.writeBit(value);
     }
     s595.writeBit(false);  // bit 8 of each shift register is not used/connected
@@ -49,6 +42,13 @@ void shiftRelays() {
   s595.propagateData();
   s595.setOutputEnable(true);
 }
+
+void initialize() {
+  s595.setOutputEnable(false);
+  board.initialize();
+  board.blinkBoardId();
+}
+
 
 void setup() {
 
@@ -66,12 +66,12 @@ void setup() {
 
 void loop() {
 
-  relays.relayOn(1);
+  outputPorts.setOn(1);
   shiftRelays();
-  delay(10000);
+  delay(5000);
 
-  relays.relayOff(1);
+  outputPorts.setOff(1);
   shiftRelays();
-  delay(2000);
+  delay(1000);
 
 }

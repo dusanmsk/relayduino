@@ -11,3 +11,10 @@ Inicializacia zariadenia:
 - loxone odpovie broadcast udp s konfiguraciou pre dosku vo formate:
   ip=192.168.100.8/24
   miniserver=192.168.100.10
+
+
+Zivot dosky:
+- caka na udp pakety vo formate "obX pY Z", kde X je cislo dosky, Y je cislo vystupneho portu (1-56) a Z je hodnota 0/1. Napr "ob2 p12 1".
+- pokial pride "p12 1", zopne sa rele 12
+- pokial pride "p12 0", rozopne sa rele 12
+- pokial je doska v rezime "countdown", vyzaduje periodicke posielanie prikazov "p12 1". Pokial nedojde k doruceniu do urciteho casu, prepne vystup do 0. Implementovat counterom a casovym intervalom.
