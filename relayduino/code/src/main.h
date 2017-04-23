@@ -1,0 +1,4 @@
+
+
+void runInitialConfigFlow();
+void awaitBoardConfiguration();

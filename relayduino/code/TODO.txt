@@ -1,0 +1,13 @@
+
+Inicializacia zariadenia:
+
+- po cistom flashi je uplne blbe
+- pri starte podrzat tlacitko, prepne sa do rezimu nastavenia adresy (zacne blikat ledka)
+- tlacitkom natukat cislo dosky v case 30 sekund
+- po 30 sec sa cislo dosky ulozi do eeprom a doska sa restartuje
+
+- nabehne doska, nacita cislo dosky z eeprom (napr. 8)
+- posiela UDP broadcast "hello board 8"
+- loxone odpovie broadcast udp s konfiguraciou pre dosku vo formate:
+  ip=192.168.100.8/24
+  miniserver=192.168.100.10
