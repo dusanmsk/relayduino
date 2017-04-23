@@ -1,5 +1,0 @@
-1. 7805 sa smazi, musim pouzit pulzny dc-dc konvertor na 5V
-2. arduino je zkradlovo naopak kurva
-3. nenavrtane otvory na din drziak
-4. overit funkcnost mikrospinacu
-
