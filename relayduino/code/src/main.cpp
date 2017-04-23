@@ -40,10 +40,10 @@ void shiftRelays() {
   int relayIndex = 56;
   for(int i = 0; i < 8; i++) {
     for(int u = 0; u < 7; u++) {
-      int value = relays.getRelay(relayIndex--);
+      bool value = relays.getRelay(relayIndex--);
       s595.writeBit(value);
     }
-    s595.writeBit(0);  // bit 8 of each shift register is not used/connected
+    s595.writeBit(false);  // bit 8 of each shift register is not used/connected
   }
 
   s595.propagateData();
@@ -66,11 +66,11 @@ void setup() {
 
 void loop() {
 
-  relays.setRelay(1, 1);
+  relays.relayOn(1);
   shiftRelays();
   delay(10000);
 
-  relays.setRelay(1, 0);
+  relays.relayOff(1);
   shiftRelays();
   delay(2000);
 

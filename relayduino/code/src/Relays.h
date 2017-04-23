@@ -4,7 +4,10 @@
 
 #include "595.h"
 
+#define RELAY_ON_TIMEOUT 10
+
 static const int NUM_OF_RELAYS = 8 * 7;
+
 
 class Relays {
 private:
@@ -15,8 +18,9 @@ public:
       relays[i] = 0;
     }
   }
-  int setRelay(int relay, int status);
-  int getRelay(int relay);
+  int relayOn(int relay);
+  int relayOff(int relay);
+  bool getRelay(int relay);
 };
 
 

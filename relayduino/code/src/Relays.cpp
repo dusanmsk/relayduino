@@ -3,18 +3,25 @@
 #include "dbg.h"
 
 
-int Relays::setRelay(int relay, int status) {
+int Relays::relayOn(int relay) {
     if(relay > 0 && relay < NUM_OF_RELAYS) {
-      dbgf2("Setting relay %d to %d", relay, status);
-      relays[relay] = status;
+      relays[relay] = RELAY_ON_TIMEOUT;
       return 0;
     }
     return -1;
 }
 
-int Relays::getRelay(int relay){
+int Relays::relayOff(int relay) {
+    if(relay > 0 && relay < NUM_OF_RELAYS) {
+      relays[relay] = 0;
+      return 0;
+    }
+    return -1;
+}
+
+bool Relays::getRelay(int relay){
   if(relay > 0 && relay < NUM_OF_RELAYS) {
-    return relays[relay];
+    return relays[relay] > 0;
   }
-  return -1;
+  return false;
 }

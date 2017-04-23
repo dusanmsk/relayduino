@@ -28,9 +28,8 @@ public:
   /*
     Shift single bit to registers
   */
-  void writeBit(int value) {
-      //dbgf("ShiftOut %d", value > 0);
-      digitalWrite(dataPin, value > 0 ? HIGH : LOW);
+  void writeBit(bool value) {
+      digitalWrite(dataPin, value ? HIGH : LOW);
       digitalWrite(srclkPin, HIGH);
       //delay(10);
       digitalWrite(srclkPin, LOW);
