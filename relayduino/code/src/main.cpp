@@ -68,10 +68,10 @@ void loop() {
 
   outputPorts.setOn(1);
   shiftRelays();
-  delay(5000);
+  delay(20000);
 
   outputPorts.setOff(1);
   shiftRelays();
-  delay(1000);
+  delay(4000);
 
 }
