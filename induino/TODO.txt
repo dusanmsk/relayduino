@@ -1,5 +1,3 @@
-- na master doske dat napajanie i2c cez tranzistor, aby slo spravit "hard reset" modulov
-- na moduly pridat ledky indikujuce stav napajania
 - zamysliet sa nad ledkami na kazdy jeden vstup
 
 prepojovacie kable medzi modulmi:

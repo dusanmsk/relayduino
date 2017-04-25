@@ -1,3 +1,2 @@
 - blokovacie kondiky
 - ledky per vystup?
-- pnp?
