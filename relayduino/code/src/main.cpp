@@ -58,6 +58,13 @@ void setup() {
 
   initialize();
 
+  outputPorts.setOn(1);
+  outputPorts.setOn(8);
+  outputPorts.setOn(15);
+  outputPorts.setOn(22);
+  outputPorts.setOn(29);
+
+
 }
 
 
@@ -65,13 +72,6 @@ void setup() {
 
 
 void loop() {
-
-  outputPorts.setOn(1);
   shiftRelays();
-  delay(20000);
-
-  outputPorts.setOff(1);
-  shiftRelays();
-  delay(4000);
-
+  delay(1000000);
 }

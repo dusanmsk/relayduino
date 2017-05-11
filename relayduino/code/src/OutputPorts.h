@@ -24,10 +24,11 @@ public:
   OutputPorts(int timeoutCount) {
     if(timeoutCount < 0) { timeoutCount = 0; }
     this->timeoutCount = timeoutCount;
-    for(int i = 1; i <= NUM_OF_PORTS; i++ ) {
+    for(int i = 0; i <= NUM_OF_PORTS; i++ ) {
       ports[i] = 0;
     }
   }
+
   int setOn(int port);
   int setOff(int port);
   bool getValue(int port);
