@@ -33,7 +33,9 @@ int OutputPorts::processTimeouts() {
     int value = ports[i];
     if(value > 0) {
       ports[i] = --value;
-      timedOut++;
+      if(value == 0) {
+        timedOut++;
+      }
     }
   }
   return timedOut;

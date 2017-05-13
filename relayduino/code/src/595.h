@@ -29,7 +29,6 @@ public:
     Shift single bit to registers
   */
   void writeBit(bool value) {
-      dbg("Pica");
       digitalWrite(dataPin, value ? HIGH : LOW);
       digitalWrite(srclkPin, HIGH);
       //delay(10);

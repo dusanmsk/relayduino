@@ -6,7 +6,6 @@
 
 static const int NUM_OF_PORTS = 8 * 7;
 
-// TODO rename to "OutputPorts"
 class OutputPorts {
 private:
   int ports[NUM_OF_PORTS+1];

@@ -11,6 +11,7 @@
 
 class Network {
 private:
+  String receivedPacket;
   char buf[NET_BUF_SIZE];
   EthernetUDP udpSend;
   EthernetUDP udpRecv;
@@ -18,7 +19,8 @@ private:
   public:
      void begin(uint8_t mac[], IPAddress address);
      void sendUdp(IPAddress address, int port, String message);
-     String receiveUdp(int port);
+     bool receiveUdp(int port);
+     String getReceivedPacket() { return receivedPacket; }
 };
 
 

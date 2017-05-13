@@ -37,7 +37,7 @@ void Board::initialize() {
   runInitialConfigFlow();
 
   boardId = EEPROM.read(EEPROM_BOARD_ID_OFFSET);
-  boardAddressStr = String("board_") + String(boardId, DEC);
+  boardIdStr = String("board_") + String(boardId, DEC);
   dbgf("Board id: %d", boardId);
 
 
@@ -114,12 +114,12 @@ void Board::awaitBoardConfiguration() {
   net.begin(mac, IPAddress(255,255,255,255));
 
   while(true) {
-    net.sendUdp(IPAddress(255,255,255,255), 5000, "hello " + boardAddressStr);
+    net.sendUdp(IPAddress(255,255,255,255), 5000, "hello " + boardIdStr);
 
     // TODO receive, then return, else sleep
     for (int i = 0; i < 100; i++) {
-      String response = net.receiveUdp(5000);
-      if(response.length() > 0) {
+      if(net.receiveUdp(5000)) {
+        String response = net.getReceivedPacket();
         // TODO if response starts with "hi", parse line-by line then look for board_X for current board. Then parse ip address.
         dbg("Response is:");
         dbg(response);

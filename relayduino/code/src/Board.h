@@ -8,7 +8,7 @@ private:
   int configButtonPin;
   int ledPin;
   int boardId;
-  String boardAddressStr;
+  String boardIdStr;
   void runInitialConfigFlow();
   void awaitBoardConfiguration();
 public:
@@ -18,6 +18,8 @@ public:
   void blinkLed(int timeMs);
   void setLed(int value);
   void blinkBoardId();
+  const String getBoardIdStr() { return boardIdStr; }
+  const int getBoardId() { return boardId; }
 
 };
 

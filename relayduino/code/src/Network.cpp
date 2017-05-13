@@ -4,7 +4,7 @@
 #include "dbg.h"
 
 void Network::zeroBuffer() {
-  memset(buf, NET_BUF_SIZE, 0);
+  memset(buf, '\0', NET_BUF_SIZE);
 }
 
 void Network::begin(uint8_t mac[], IPAddress address) {
@@ -22,8 +22,7 @@ void Network::sendUdp(IPAddress address, int port, String message) {
   //dbg("Sent");
 }
 
-String Network::receiveUdp(int port) {
-  String ret = "";
+bool Network::receiveUdp(int port) {
   udpRecv.begin(port);
   int size = udpRecv.parsePacket();
   //dbgf("Parsed: %d", size);
@@ -31,8 +30,9 @@ String Network::receiveUdp(int port) {
       zeroBuffer();
       int how = udpRecv.read(buf, NET_BUF_SIZE);
       //dbgf("Read %s", how);
-      ret = String((char*)buf);
+      receivedPacket = String((char*)buf);
+      return true;
   }
   udpRecv.stop();
-  return ret;
+  return false;
 }
