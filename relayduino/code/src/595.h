@@ -39,7 +39,7 @@ public:
     Enable/disable outputs
   */
   void setOutputEnable(bool enable) {
-    dbgf("Enable output: %s", enable ? "true" : "false");
+    //dbgf("Enable output: %s", enable ? "true" : "false");
     digitalWrite(oePin, enable ? LOW : HIGH);
   }
 

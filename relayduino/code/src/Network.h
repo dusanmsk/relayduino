@@ -11,16 +11,19 @@
 
 class Network {
 private:
-  String receivedPacket;
-  char buf[NET_BUF_SIZE];
+  char recvBuf[NET_BUF_SIZE];
+  char sendBuf[NET_BUF_SIZE];
   EthernetUDP udpSend;
   EthernetUDP udpRecv;
-  void zeroBuffer();
+  EthernetServer tcpServer = EthernetServer(6666);
+  void zeroRecvBuffer();
+  void zeroSendBuffer();
   public:
      void begin(uint8_t mac[], IPAddress address);
      void sendUdp(IPAddress address, int port, String message);
      bool receiveUdp(int port);
-     String getReceivedPacket() { return receivedPacket; }
+     bool receiveTcp(int port);
+     const char* getReceivedPacket() {return (const char*) &recvBuf; };
 };
 
 

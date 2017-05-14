@@ -38,6 +38,8 @@ public:
     Returns number of timeouted ports.
   */
   int processTimeouts();
+
+  void printDebugInfo();
 };
 
 

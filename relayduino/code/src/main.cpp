@@ -58,7 +58,7 @@ void initialize() {
 
   // initialize network
   mac[5] = (0xED + board.getBoardId());
-  IPAddress listenIpAddress = IPAddress(192, 168, 150, 150 + board.getBoardId());
+  IPAddress listenIpAddress = IPAddress(192, 168, 100, 150 + board.getBoardId());
   network.begin(mac, listenIpAddress);
 }
 
@@ -77,15 +77,16 @@ void setup() {
 
 
 Timer relaysTimeoutTimer;
+Timer boardLedTimeoutTimer;
 int boardId, relayId, relayValue, parsedArgs;
 void loop() {
 
   // receive packet
   if(network.receiveUdp(listenPort)) {
-    String packet = network.getReceivedPacket();
-    //dbg(packet);
-    parsedArgs = sscanf(packet.c_str(), "b%d r%d %d", &boardId ,&relayId, &relayValue);
+    const char* packet = network.getReceivedPacket();
+    parsedArgs = sscanf(packet, "b%d r%d %d", &boardId ,&relayId, &relayValue);
     if(parsedArgs == 3 && boardId == board.getBoardId()) {
+        board.setLed(1);
         if(relayValue > 0) {
           outputPorts.setOn(relayId);
         } else {
@@ -99,11 +100,15 @@ void loop() {
     // process relay timeouts
     if(relaysTimeoutTimer.isOver()) {
       int howTimeout = outputPorts.processTimeouts();
-      dbg(howTimeout);
       if(howTimeout > 0) {
         shiftRelays();
       }
       relaysTimeoutTimer.sleep(1000);
+    }
+
+    if(boardLedTimeoutTimer.isOver()) {
+      board.setLed(0);
+      boardLedTimeoutTimer.sleep(50);
     }
 
 
