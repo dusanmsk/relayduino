@@ -1,0 +1,2 @@
+pullup rezistory - optional (v pripade ze to bude blbnut dat na scl a sda)
+bude treba dvojvrstvovu dosku pretoze piny na megu pojdu opacne
