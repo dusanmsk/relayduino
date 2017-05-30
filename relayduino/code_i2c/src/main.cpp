@@ -58,8 +58,8 @@ void setup() {
 
   // initialize relay boards
   for(int i = 0; i < NUM_OF_RELAY_BOARDS; i++) {
-    RelayBoard relayBoard =  relayBoards[i];
-    relayBoard.initialize();
+    RelayBoard* relayBoard =  relayBoards[i];
+    relayBoard->initialize();
   }
 }
 

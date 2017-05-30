@@ -3,6 +3,6 @@
 #ifndef _GLOBALS_H
 #define _GLOBALS_H
 
-static const int OUTPUT_PORTS_TIMEOUT = 7;
+static const int OUTPUT_PORTS_TIMEOUT = 10;
 
 #endif
