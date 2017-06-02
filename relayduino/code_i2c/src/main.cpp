@@ -64,11 +64,28 @@ void setup() {
 }
 
 
-#define recvBufferSize 1024
+#define recvBufferSize 2048
 char recvBuffer[recvBufferSize];
 bool alreadyConnected;
 int relayBoardId, relayId, relayValue, parsedArgs;
 Timer relaysTimeoutTimer;
+
+void loop4() {
+  EthernetClient client = server.available();
+  if (client) {
+      if (!alreadyConnected) {
+        // clear out the input buffer:
+        client.flush();
+        alreadyConnected = true;
+      }
+
+      while (client.available()) {
+        String cmd = client.readStringUntil(';');
+        dbg(cmd);
+        Serial.println("");
+      }
+    }
+}
 
 void loop() {
 
@@ -81,17 +98,19 @@ void loop() {
         alreadyConnected = true;
       }
 
-      if (client.available()) {
-        int how = client.read(recvBuffer, recvBufferSize-1);
-        recvBuffer[how] = '\0';
-        String cmd = String((const char*)&recvBuffer);
+      while (client.available()) {
+        //int how = client.read(recvBuffer, recvBufferSize-1);
+        //recvBuffer[how] = '\0';
+        //String cmd = String((const char*)&recvBuffer);
+        String cmd = client.readStringUntil(';');
         dbg(cmd);
 
-        parsedArgs = sscanf(recvBuffer, "b%d r%d %d", &relayBoardId ,&relayId, &relayValue);
+        parsedArgs = sscanf(cmd.c_str(), "b%d r%d %d", &relayBoardId ,&relayId, &relayValue);
         if(parsedArgs == 3) {
           RelayBoard* relayBoard = relayBoards[relayBoardId];
           relayBoard->setRelay(relayId, relayValue);
-          relayBoard->sendData();
+          relayBoard->sendData();  
+
         }
       }
     }
