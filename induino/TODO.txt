@@ -1,5 +1,0 @@
-- zamysliet sa nad ledkami na kazdy jeden vstup
-
-prepojovacie kable medzi modulmi:
-http://www.ebay.com/sch/i.html?_from=R40&_trksid=p2050601.m570.l1313.TR0.TRC0.H0.X4pin+reprap+wire.TRS0&_nkw=4pin+reprap+wire&_sacat=0
-
