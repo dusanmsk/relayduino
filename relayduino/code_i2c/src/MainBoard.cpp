@@ -14,10 +14,17 @@ MainBoard::MainBoard() {
   // TODO read address dip switch
   id = 0;
   pinMode(BLUE_LED_PIN, OUTPUT);
+  digitalWrite(BLUE_LED_PIN, LOW);
+  pinMode(RED_LED_PIN, OUTPUT);
+  digitalWrite(RED_LED_PIN, LOW);
 }
 
 int MainBoard::getId() {
   return id;
+}
+
+void MainBoard::setRedLed(bool value) {
+  digitalWrite(RED_LED_PIN, value ? HIGH : LOW);
 }
 
 

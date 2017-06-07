@@ -23,6 +23,7 @@
 
 MainBoard mainBoard;
 EthernetServer server(5000);
+Timer redLedTimer;
 
 #define NUM_OF_RELAY_BOARDS 8
 RelayBoard* relayBoards[NUM_OF_RELAY_BOARDS] = {
@@ -105,6 +106,8 @@ void loop() {
         String cmd = client.readStringUntil(';');
         dbg(cmd);
         mainBoard.blinkBlueLed(100);
+        redLedTimer.sleep(60000); // TODO nastavit na timeout - pokym nepride v dany cas ziaden packet - rozsviet red led
+        mainBoard.setRedLed(false);
 
         parsedArgs = sscanf(cmd.c_str(), "b%d r%d %d", &relayBoardId ,&relayId, &relayValue);
         if(parsedArgs == 3) {
@@ -129,5 +132,10 @@ void loop() {
 
 
     mainBoard.loop();
+    if(redLedTimer.isOver()) {
+      mainBoard.setRedLed(true);
+    }
+
+
 
 }

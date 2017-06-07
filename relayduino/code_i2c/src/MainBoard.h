@@ -19,6 +19,7 @@ class MainBoard {
     void loop();
 
     void blinkBlueLed(int time);
+    void setRedLed(bool value);
 
 
 };
