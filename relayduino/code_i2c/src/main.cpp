@@ -104,12 +104,13 @@ void loop() {
         //String cmd = String((const char*)&recvBuffer);
         String cmd = client.readStringUntil(';');
         dbg(cmd);
+        mainBoard.blinkBlueLed(100);
 
         parsedArgs = sscanf(cmd.c_str(), "b%d r%d %d", &relayBoardId ,&relayId, &relayValue);
         if(parsedArgs == 3) {
           RelayBoard* relayBoard = relayBoards[relayBoardId];
           relayBoard->setRelay(relayId, relayValue);
-          relayBoard->sendData();  
+          relayBoard->sendData();
 
         }
       }
@@ -127,6 +128,6 @@ void loop() {
     }
 
 
-
+    mainBoard.loop();
 
 }
