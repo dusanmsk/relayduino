@@ -28,8 +28,8 @@ byte mask[4] = { MASK };
 
 #define NUM_OF_INPUT_BOARDS 8
 
-int connectedBoards[NUM_OF_INPUT_BOARDS];
-
+InputBoard* connectedBoards[NUM_OF_INPUT_BOARDS];
+Adafruit_MCP23017 mcp;
 
 void setup() {
 
@@ -37,14 +37,14 @@ void setup() {
   while (!Serial);
 
   int mainBoardId = mainBoard.getId();
-  dbgf("Main board id: %d", mainBoardId);
+  dbg("Main board id: %d", mainBoardId);
 
   mask[3]+=mainBoardId;
   ip[3]+=mainBoardId;
   //Ethernet.begin(mac, ip, mask);
   //server.begin();
 
-  dbgf4("Assigned address: %d.%d.%d.%d", ip[0], ip[1], ip[2], ip[3]);
+  dbg("Assigned address: %d.%d.%d.%d", ip[0], ip[1], ip[2], ip[3]);
 
   // find input boards
   int error;
@@ -54,27 +54,31 @@ void setup() {
     Wire.beginTransmission(adr + MCP23017_ADDRESS);
     error = Wire.endTransmission();
     if (error == 0) {
-      dbgf("Found input board at address: %d", adr);
-      connectedBoards[adr] = 1;
+      dbg("Found input board at address: %d", adr);
+      connectedBoards[adr] = new InputBoard(&mcp, adr);
     }
   }
 
 }
 
-Adafruit_MCP23017 mcp;
+void sendCommand(int mainBoardId, int inputBoardId, int inputId, int value) {
+  // TODO
+  dbg("m%d b%d i%d %d", mainBoardId, inputBoardId, inputId, value);
+}
+
 void loop() {
 
   // iterate over all connected boards
   for(int address = 0; address < NUM_OF_INPUT_BOARDS; address++) {
     if(connectedBoards[address]) {
-      mcp.begin(address);
-      uint16_t x = mcp.readGPIOAB();
-      x = ~x;
-      String s  = String(x, BIN);
-      dbgf2("read from %d: %s", address, s.c_str());
+      InputBoard* inputBoard = connectedBoards[address];
+      int responses[16];
+      inputBoard->readInputs(responses);
+      for(int i = 0; i < 16; i++) {
+        if(responses[i] != 0 ) {
+          sendCommand(mainBoard.getId(), inputBoard->getId(), i,  responses[i] == -1 ? 0 : 1);
+        }
+      }
     }
   }
-
-  delay(200);
-
 }
