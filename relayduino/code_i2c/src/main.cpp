@@ -48,14 +48,14 @@ void setup() {
   while (!Serial);
 
   int mainBoardId = mainBoard.getId();
-  dbgf("Main board id: %d", mainBoardId);
+  dbg("Main board id: %d", mainBoardId);
 
   mask[3]+=mainBoardId;
   ip[3]+=mainBoardId;
   Ethernet.begin(mac, ip, mask);
   server.begin();
 
-  dbgf4("Assigned address: %d.%d.%d.%d", ip[0], ip[1], ip[2], ip[3]);
+  dbg("Assigned address: %d.%d.%d.%d", ip[0], ip[1], ip[2], ip[3]);
 
   // initialize relay boards
   for(int i = 0; i < NUM_OF_RELAY_BOARDS; i++) {
@@ -82,7 +82,7 @@ void loop4() {
 
       while (client.available()) {
         String cmd = client.readStringUntil(';');
-        dbg(cmd);
+        dbg("%s", cmd.c_str());
         Serial.println("");
       }
     }
@@ -104,7 +104,7 @@ void loop() {
         //recvBuffer[how] = '\0';
         //String cmd = String((const char*)&recvBuffer);
         String cmd = client.readStringUntil(';');
-        dbg(cmd);
+        dbg("%s", cmd.c_str());
         mainBoard.blinkBlueLed(100);
         redLedTimer.sleep(60000); // TODO nastavit na timeout - pokym nepride v dany cas ziaden packet - rozsviet red led
         mainBoard.setRedLed(false);

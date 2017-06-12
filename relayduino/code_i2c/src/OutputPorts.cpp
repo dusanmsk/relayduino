@@ -37,7 +37,7 @@ int OutputPorts::processTimeouts() {
 void OutputPorts::printDebugInfo() {
   for(int i = 0; i < NUM_OF_PORTS; i++) {
     int value = ports[i];
-    dbgf2("Port %d : %d", i, value);
+    dbg("Port %d : %d", i, value);
   }
 
 }
