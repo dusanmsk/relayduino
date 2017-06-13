@@ -41,7 +41,6 @@ byte mac[6] = {  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xA0 };
 byte ip[4] = {NETWORK, 180};
 byte mask[4] = { MASK };
 
-
 void setup() {
 
   Serial.begin(115200);

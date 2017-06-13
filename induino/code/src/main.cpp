@@ -1,6 +1,11 @@
 
 #define NETWORK 192, 168, 100
 #define MASK 255,255,255,0
+#define LOCAL_PORT 5556
+#define LOXONE_PORT 5555
+#define SEND_IP_ADDRESS "255.255.255.255"
+
+#define outputPacketBufferSize 128
 
 
 #include "MainBoard.h"
@@ -22,9 +27,11 @@
 MainBoard mainBoard;
 
 byte mac[6] = {  0xDE, 0xAD, 0xBE, 0xAA, 0xFE, 0xA0 };
-byte ip[4] = {NETWORK, 120};
+byte ip[4] = { NETWORK, 120 };
 byte mask[4] = { MASK };
 
+EthernetUDP udpSend;
+char outputPacketBuffer[outputPacketBufferSize];
 
 #define NUM_OF_INPUT_BOARDS 8
 
@@ -41,7 +48,9 @@ void setup() {
 
   mask[3]+=mainBoardId;
   ip[3]+=mainBoardId;
-  //Ethernet.begin(mac, ip, mask);
+  Ethernet.begin(mac, ip, mask);
+  udpSend.begin(LOCAL_PORT);
+
   //server.begin();
 
   dbg("Assigned address: %d.%d.%d.%d", ip[0], ip[1], ip[2], ip[3]);
@@ -61,9 +70,13 @@ void setup() {
 
 }
 
+
 void sendCommand(int mainBoardId, int inputBoardId, int inputId, int value) {
-  // TODO
-  dbg("m%d b%d i%d %d", mainBoardId, inputBoardId, inputId, value);
+  snprintf(outputPacketBuffer, outputPacketBufferSize, "m%d b%d i%d %d", mainBoardId, inputBoardId, inputId, value);
+  dbg("Sending %s", outputPacketBuffer);
+  udpSend.beginPacket(SEND_IP_ADDRESS, LOXONE_PORT);
+  udpSend.write(outputPacketBuffer);
+  udpSend.endPacket();
 }
 
 void loop() {
