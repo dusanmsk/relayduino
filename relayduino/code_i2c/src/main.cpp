@@ -110,6 +110,7 @@ void loop() {
 
         parsedArgs = sscanf(cmd.c_str(), "b%d r%d %d", &relayBoardId ,&relayId, &relayValue);
         if(parsedArgs == 3) {
+          relayId--;
           RelayBoard* relayBoard = relayBoards[relayBoardId];
           relayBoard->setRelay(relayId, relayValue);
           relayBoard->sendData();
