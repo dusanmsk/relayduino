@@ -17,14 +17,7 @@ MainBoard::MainBoard() {
   pinMode(RED_LED_PIN, OUTPUT);
   digitalWrite(RED_LED_PIN, LOW);
 
-  pinMode(DIP_PIN1, INPUT_PULLUP);
-  pinMode(DIP_PIN2, INPUT_PULLUP);
-  pinMode(DIP_PIN3, INPUT_PULLUP);
   id = 0;
-  // !!!!!! TODO uncomment when shield will be reviewed
-  //if (digitalRead(DIP_PIN1) == LOW) { id |= 1; }
-  //if (digitalRead(DIP_PIN2) == LOW) { id |= 2; }
-  //if (digitalRead(DIP_PIN3) == LOW) { id |= 4; }
 
 }
 
