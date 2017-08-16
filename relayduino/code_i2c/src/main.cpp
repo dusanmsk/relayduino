@@ -102,7 +102,7 @@ void loop() {
         //int how = client.read(recvBuffer, recvBufferSize-1);
         //recvBuffer[how] = '\0';
         //String cmd = String((const char*)&recvBuffer);
-        String cmd = client.readStringUntil(';');
+        String cmd = client.readStringUntil(',');
         dbg("%s", cmd.c_str());
         mainBoard.blinkBlueLed(100);
         redLedTimer.sleep(60000); // TODO nastavit na timeout - pokym nepride v dany cas ziaden packet - rozsviet red led
