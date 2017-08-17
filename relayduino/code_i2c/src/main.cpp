@@ -1,7 +1,7 @@
 
 #define NETWORK 192, 168, 100
 #define MASK 255,255,255,0
-#define PING_TIMEOUT_MS 5000
+#define PING_TIMEOUT_MS 10000
 
 #include "Globals.h"
 #include "MainBoard.h"
@@ -24,7 +24,6 @@
 
 MainBoard mainBoard;
 EthernetServer server(5000);
-Timer redLedTimer;
 Timer pingTimer;
 
 #define NUM_OF_RELAY_BOARDS 8
@@ -70,7 +69,6 @@ void setup() {
 char recvBuffer[recvBufferSize];
 bool alreadyConnected;
 int relayBoardId, relayId, relayValue, parsedArgs;
-Timer relaysTimeoutTimer;
 
 void loop() {
 
@@ -87,7 +85,6 @@ void loop() {
         String cmd = client.readStringUntil(',');
         dbg("%s", cmd.c_str());
         mainBoard.blinkBlueLed(100);
-        redLedTimer.sleep(60000); // TODO nastavit na timeout - pokym nepride v dany cas ziaden packet - rozsviet red led
         mainBoard.setRedLed(false);
 
         if(cmd.equals("ping")) {
@@ -104,6 +101,7 @@ void loop() {
       }
     }
 
+/*
     // process relays timeouts in intervals
     if(relaysTimeoutTimer.isOver()) {
       for(int i = 0; i < NUM_OF_RELAY_BOARDS; i++) {
@@ -114,21 +112,21 @@ void loop() {
       }
       relaysTimeoutTimer.sleep(1000);
     }
+*/
 
     // process ping timeout - possible connection lost - turn everything off immediately
-/*
     if(pingTimer.isOver()) {
       dbg("No ping - connection lost? Turning everything off");
       for(int i = 0; i < NUM_OF_RELAY_BOARDS; i++) {
         RelayBoard* relayBoard = relayBoards[i];
-        for(int r = 0; r < 16; r++) {
+        for(int r = 1; r <= 16; r++) {
           relayBoard->setRelay(r, 0);
         }
+        relayBoard->sendData();
       }
-    }
-*/
-    mainBoard.loop();
-    if(redLedTimer.isOver()) {
+      pingTimer.sleep(PING_TIMEOUT_MS);
       mainBoard.setRedLed(true);
     }
+
+    mainBoard.loop();
 }

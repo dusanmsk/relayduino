@@ -33,6 +33,7 @@ public:
   int getValue(int port);
 
   /**
+   TODO deprecated, remove
     If running in timeout mode, you should call this method periodically.
     Each call finds and sets off all ports that was not set on for a specified number of calls of this method (see argument in constructor).
     Returns number of timeouted ports.
