@@ -7,9 +7,7 @@ void OutputPorts::setPort(int port, int value) {
   if(port >= 0 && port < NUM_OF_PORTS) {
     value = (value == 0 ? 0 : (1 + timeoutCount));
     ports[port] = value;
-    return 0;
   }
-  return -1;
 }
 
 int OutputPorts::getValue(int port){

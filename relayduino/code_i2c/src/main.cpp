@@ -70,6 +70,7 @@ char recvBuffer[recvBufferSize];
 bool alreadyConnected;
 int relayBoardId, relayId, relayValue, parsedArgs;
 
+boolean isOnline;
 void loop() {
 
   EthernetClient client = server.available();
@@ -84,18 +85,24 @@ void loop() {
       while (client.available()) {
         String cmd = client.readStringUntil(',');
         dbg("%s", cmd.c_str());
-        mainBoard.blinkBlueLed(100);
-        mainBoard.setRedLed(false);
 
         if(cmd.equals("ping")) {
+          isOnline = true;
           pingTimer.sleep(PING_TIMEOUT_MS);
-        } else {
+          mainBoard.blinkBlueLed(100);
+          mainBoard.setRedLed(false);
+        } else if (isOnline){
           parsedArgs = sscanf(cmd.c_str(), "b%d r%d %d", &relayBoardId ,&relayId, &relayValue);
           if(parsedArgs == 3) {
+            mainBoard.blinkBlueLed(100);
+            mainBoard.setRedLed(false);
             relayId--;
             RelayBoard* relayBoard = relayBoards[relayBoardId];
             relayBoard->setRelay(relayId, relayValue);
             relayBoard->sendData();
+          } else {
+            dbgn("Invalid number of arguments");
+            mainBoard.setRedLed(true);
           }
         }
       }
@@ -116,10 +123,11 @@ void loop() {
 
     // process ping timeout - possible connection lost - turn everything off immediately
     if(pingTimer.isOver()) {
-      dbg("No ping - connection lost? Turning everything off");
+      dbgn("No ping - connection lost? Turning everything off");
+      isOnline = false;
       for(int i = 0; i < NUM_OF_RELAY_BOARDS; i++) {
         RelayBoard* relayBoard = relayBoards[i];
-        for(int r = 1; r <= 16; r++) {
+        for(int r = 0; r < 16; r++) {
           relayBoard->setRelay(r, 0);
         }
         relayBoard->sendData();
