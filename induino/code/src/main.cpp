@@ -72,7 +72,7 @@ void setup() {
 
 
 void sendCommand(int mainBoardId, int inputBoardId, int inputId, int value) {
-  snprintf(outputPacketBuffer, outputPacketBufferSize, "m%d b%d i%d %d", mainBoardId, inputBoardId, inputId, value);
+  snprintf(outputPacketBuffer, outputPacketBufferSize, "m%d b%d i%d %d", mainBoardId, inputBoardId, inputId+1, value);
   dbg("Sending %s", outputPacketBuffer);
   udpSend.beginPacket(SEND_IP_ADDRESS, LOXONE_PORT);
   udpSend.write(outputPacketBuffer);
