@@ -1,8 +1,9 @@
 
 
 #include "MainBoard.h"
-#include "Arduino.h"
+#include <Arduino.h>
 #include "Globals.h"
+#include "dbg.h"
 
 /*
   TODO:
@@ -10,12 +11,14 @@
   led pins: 36 (red), 28 (blue)
 */
 
-MainBoard::MainBoard() {
+MainBoard::MainBoard(int okLedPin, int errorLedPin) {
+  this->okLedPin = okLedPin;
+  this->errorLedPin = errorLedPin;
   // TODO read address dip switch
-  pinMode(BLUE_LED_PIN, OUTPUT);
-  digitalWrite(BLUE_LED_PIN, LOW);
-  pinMode(RED_LED_PIN, OUTPUT);
-  digitalWrite(RED_LED_PIN, LOW);
+  pinMode(okLedPin, OUTPUT);
+  digitalWrite(okLedPin, LOW);
+  pinMode(errorLedPin, OUTPUT);
+  digitalWrite(errorLedPin, LOW);
 
   id = 0;
 
@@ -25,20 +28,20 @@ int MainBoard::getId() {
   return id;
 }
 
-void MainBoard::setRedLed(bool value) {
-  digitalWrite(RED_LED_PIN, value ? HIGH : LOW);
+void MainBoard::setErrorLed(bool value) {
+  digitalWrite(errorLedPin, value ? HIGH : LOW);
 }
 
 
-void MainBoard::blinkBlueLed(int timeMs) {
-  digitalWrite(BLUE_LED_PIN, HIGH);
+void MainBoard::blinkOkLed(int timeMs) {
+  digitalWrite(okLedPin, HIGH);
   blueLedTimer.sleep(timeMs);
 }
 
 void MainBoard::loop() {
 
   if(blueLedTimer.isOver()) {
-    digitalWrite(BLUE_LED_PIN, LOW);
+    digitalWrite(okLedPin, LOW);
   }
 
 

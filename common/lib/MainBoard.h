@@ -7,19 +7,21 @@
 
 class MainBoard {
   private:
+    int okLedPin;
+    int errorLedPin;
     int id;
     Timer blueLedTimer;
 
   public:
-    MainBoard();
+    MainBoard(int okLedPin, int errorLedPin);
     /// get board ID from dip switch
     int getId();
 
     /// call this periodically from main loop
     void loop();
 
-    void blinkBlueLed(int time);
-    void setRedLed(bool value);
+    void blinkOkLed(int time);
+    void setErrorLed(bool value);
 
 
 };
