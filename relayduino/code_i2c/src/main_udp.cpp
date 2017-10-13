@@ -11,11 +11,15 @@
 
 
 #define LOCAL_PORT 6666
-#define PING_TIMEOUT_MS 10000
+#define PING_TIMEOUT_MS 15000
 
-// TODO set proper pins
-#define OK_LED_PIN 14
-#define ERROR_LED_PIN 14
+// TODO make ifdef mega/nanoatmega328
+#define OK_LED_PIN 28
+#define ERROR_LED_PIN 36
+
+// TODO nano set proper pins
+//#define OK_LED_PIN 14
+//#define ERROR_LED_PIN 14
 
 #include "Globals.h"
 #include "MainBoard.h"
@@ -26,6 +30,7 @@
 #include "mcp.h"
 #include "RelayBoard.h"
 #include "Timer.h"
+
 
 /*
   TODO:
@@ -53,10 +58,11 @@ byte mac[6] = {  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0x30};
 char mainBoardIdStr[4];
 int mainBoardIdStrLen;
 
-void setup() {
+void(* uglyResetTheBoard) (void) = 0; //declare reset function @ address 0 - ugly hard hack that works
+int failedPings = 0;
 
+void setup() {
   Serial.begin(115200);
-  while (!Serial);
 
   int mainBoardId = mainBoard.getId();
   snprintf(mainBoardIdStr, 4, "m%d", mainBoardId);
@@ -73,6 +79,7 @@ void setup() {
     RelayBoard* relayBoard =  relayBoards[i];
     relayBoard->initialize();
   }
+  pingTimer.sleep(PING_TIMEOUT_MS);
 }
 
 
@@ -94,10 +101,10 @@ void loop() {
       if(strncmp(recvBuffer, "ping", recvBufferSize) == 0) {
         isOnline = true;
         pingTimer.sleep(PING_TIMEOUT_MS);
-        mainBoard.blinkOkLed(100);
+        mainBoard.blinkOkLed(30);
         mainBoard.setErrorLed(false);
         // TODO send pong
-        //dbgn("Ping processed");
+        dbgn("Ping processed");
       }
 
       // if it was not ping command, check if command is for this masterboard
@@ -105,7 +112,7 @@ void loop() {
         parsedArgs = sscanf(recvBuffer, "m%d b%d r%d %d", &ignoredMasterBoardId, &relayBoardId ,&relayId, &relayValue);
         if(parsedArgs == 4) {
           pingTimer.sleep(PING_TIMEOUT_MS);
-          mainBoard.blinkOkLed(100);
+          mainBoard.blinkOkLed(30);
           mainBoard.setErrorLed(false);
           relayId--;
           RelayBoard* relayBoard = relayBoards[relayBoardId];
@@ -117,83 +124,29 @@ void loop() {
           mainBoard.setErrorLed(true);
         }
       }
+  }
 
-      // process ping timeout - possible connection lost - turn everything off immediately
-      if(pingTimer.isOver()) {
-        dbgn("No ping - connection lost? Turning everything off");
-        isOnline = false;
-        for(int i = 0; i < NUM_OF_RELAY_BOARDS; i++) {
-          RelayBoard* relayBoard = relayBoards[i];
-          for(int r = 0; r < 16; r++) {
-            relayBoard->setRelay(r, 0);
-          }
-          relayBoard->sendData();
-        }
-        pingTimer.sleep(PING_TIMEOUT_MS);
-        mainBoard.setErrorLed(true);
+  // process ping timeout - possible connection lost - turn everything off immediately
+  if(pingTimer.isOver()) {
+    dbgn("No ping - connection lost? Turning everything off");
+    isOnline = false;
+    for(int i = 0; i < NUM_OF_RELAY_BOARDS; i++) {
+      RelayBoard* relayBoard = relayBoards[i];
+      for(int r = 0; r < 16; r++) {
+        relayBoard->setRelay(r, 0);
       }
-
-      mainBoard.loop();
-
+      relayBoard->sendData();
+    }
+    pingTimer.sleep(PING_TIMEOUT_MS);
+    mainBoard.setErrorLed(true);
+    if(failedPings++ > 10) {
+      dbgn("No ping for a long time, trying to reset the device");
+      delay(5000);
+      uglyResetTheBoard();
     }
 
-    /*
-      while (client.available()) {
-        String cmd = client.readStringUntil(',');
-        dbg("%s", cmd.c_str());
+  }
 
-        if(cmd.equals("ping")) {
-          isOnline = true;
-          pingTimer.sleep(PING_TIMEOUT_MS);
-          mainBoard.blinkOkLed(100);
-          mainBoard.setErrorLed(false);
-        } else if (isOnline){
-          parsedArgs = sscanf(cmd.c_str(), "b%d r%d %d", &relayBoardId ,&relayId, &relayValue);
-          if(parsedArgs == 3) {
-            mainBoard.blinkOkLed(100);
-            mainBoard.setErrorLed(false);
-            relayId--;
-            RelayBoard* relayBoard = relayBoards[relayBoardId];
-            relayBoard->setRelay(relayId, relayValue);
-            relayBoard->sendData();
-          } else {
-            dbgn("Invalid number of arguments");
-            mainBoard.setErrorLed(true);
-          }
-        }
-      }
-    }
-*/
-/*
-    // process relays timeouts in intervals
-    if(relaysTimeoutTimer.isOver()) {
-      for(int i = 0; i < NUM_OF_RELAY_BOARDS; i++) {
-        RelayBoard* relayBoard = relayBoards[i];
-        if(relayBoard->processTimeouts()) {
-          relayBoard->sendData();
-        }
-      }
-      relaysTimeoutTimer.sleep(1000);
-    }
-*/
+  mainBoard.loop();
 
-
-/*
-    // process ping timeout - possible connection lost - turn everything off immediately
-    if(pingTimer.isOver()) {
-      dbgn("No ping - connection lost? Turning everything off");
-      isOnline = false;
-      for(int i = 0; i < NUM_OF_RELAY_BOARDS; i++) {
-        RelayBoard* relayBoard = relayBoards[i];
-        for(int r = 0; r < 16; r++) {
-          relayBoard->setRelay(r, 0);
-        }
-        relayBoard->sendData();
-      }
-      pingTimer.sleep(PING_TIMEOUT_MS);
-      mainBoard.setErrorLed(true);
-    }
-
-    mainBoard.loop();
-  */
 }
