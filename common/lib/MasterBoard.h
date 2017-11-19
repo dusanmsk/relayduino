@@ -1,11 +1,11 @@
 
 
-#ifndef _MAINBOARD_H_
-#define _MAINBOARD_H_
+#ifndef _MASTERBOARD_H_
+#define _MASTERBOARD_H_
 
 #include "Timer.h"
 
-class MainBoard {
+class MasterBoard {
   private:
     int okLedPin;
     int errorLedPin;
@@ -13,7 +13,7 @@ class MainBoard {
     Timer blueLedTimer;
 
   public:
-    MainBoard(int okLedPin, int errorLedPin);
+    MasterBoard(int okLedPin, int errorLedPin);
     /// get board ID from dip switch
     int getId();
 

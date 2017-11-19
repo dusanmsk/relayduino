@@ -1,6 +1,6 @@
 
 
-#include "MainBoard.h"
+#include "MasterBoard.h"
 #include <Arduino.h>
 #include "Globals.h"
 #include "dbg.h"
@@ -11,7 +11,7 @@
   led pins: 36 (red), 28 (blue)
 */
 
-MainBoard::MainBoard(int okLedPin, int errorLedPin) {
+MasterBoard::MasterBoard(int okLedPin, int errorLedPin) {
   this->okLedPin = okLedPin;
   this->errorLedPin = errorLedPin;
   // TODO read address dip switch
@@ -24,21 +24,21 @@ MainBoard::MainBoard(int okLedPin, int errorLedPin) {
 
 }
 
-int MainBoard::getId() {
+int MasterBoard::getId() {
   return id;
 }
 
-void MainBoard::setErrorLed(bool value) {
+void MasterBoard::setErrorLed(bool value) {
   digitalWrite(errorLedPin, value ? HIGH : LOW);
 }
 
 
-void MainBoard::blinkOkLed(int timeMs) {
+void MasterBoard::blinkOkLed(int timeMs) {
   digitalWrite(okLedPin, HIGH);
   blueLedTimer.sleep(timeMs);
 }
 
-void MainBoard::loop() {
+void MasterBoard::loop() {
 
   if(blueLedTimer.isOver()) {
     digitalWrite(okLedPin, LOW);
