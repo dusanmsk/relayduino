@@ -66,8 +66,7 @@ void setup() {
   int masterBoardId = MasterBoard.getId();
   snprintf(masterBoardIdStr, 5, "om%d", masterBoardId);
   masterBoardIdStrLen = strlen(masterBoardIdStr);
-  dbg("Master board id: %d", masterBoardId);
-  dbg("Master board id string: %s", masterBoardIdStr);
+  dbg("Master board id: %s", masterBoardIdStr);
 
   // relayboards starts at 192.168.100.140
   initNetwork(140 + masterBoardId);

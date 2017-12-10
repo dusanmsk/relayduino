@@ -47,7 +47,7 @@ void setup() {
   snprintf(masterBoardIdStr, 5, "im%d", masterBoardId);
   masterBoardIdStrLen = strlen(masterBoardIdStr);
 
-  dbg("Master board id: %d", masterBoardId);
+  dbg("Master board id: %s", masterBoardIdStr);
 
   // input masterBoards starts 192.168.100.120
   initNetwork(120 + masterBoardId);
