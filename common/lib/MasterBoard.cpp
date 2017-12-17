@@ -7,7 +7,7 @@
 
 /*
   TODO:
-  dip switch pins: 52,50,48,46
+  dip switch pins: TODO do not conflict with SPI !!!
   led pins: 36 (red), 28 (blue)
 */
 
