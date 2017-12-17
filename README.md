@@ -19,12 +19,13 @@ and feed it with pulse generator configured 1 on 4 off seconds. Boards use this 
 for a while, it turns off all relays.
 
 To drive single relay on masterboard=0, slaveboard=2, relay=3, create new output command with following configuration:
-
+```
 Command ON: om0 b2 r3 1
 Command OFF: om0 b2 r3 0
 First repetition: 30
 Repetition interval: 30
 Use as digital output
+```
 
 To receive signals from inputboards, create new udp virtual input named "Relayduino input BUS", udp receive port 5555. You should use udp monitor then to create commands from input packets.
 If you would like to do so manually, structure of command is:
