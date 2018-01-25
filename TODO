@@ -1,1 +1,11 @@
 - remove dip switches from masterboard, implement address configuration as software tool
+
+Idea je nasledovna:
+
+Bude existovat jednoducha app, ktorej poviem: "nastav prvemu boardu na ktory narazis boardId na X". Ta po spusteni
+zacne broadcastovat specialny message v kratkych (0.1s) intervaloch.
+
+Ked sa masterboard spusti (po resete, power cycle) a v prvej sekunde zachyti tento packet, prejde do inicializacneho modu,
+nastavi si do eeprom boardId ktore prijala a potvrdi ho nejakou UDP spravou (na ktoru ta appka zareaguje a skonci).
+
+TODO: vymysliet to tak, aby prvotna mac a ip adresa neboli natvrdo staticke pre kazdy board, pretoze sa potom pobiju.
