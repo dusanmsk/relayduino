@@ -5,7 +5,7 @@
 #include "InputBoard.h"
 #include "networking.h"
 
-#include <SPI.h>
+#include <SPI.h>/home/msk/work/relayduino/inputmaster/code
 #include <Wire.h>
 #include "mcp.h"
 
@@ -88,7 +88,7 @@ void loop() {
       inputBoard->readInputs(responses);
       for(int i = 0; i < 16; i++) {
         if(responses[i] != 0 ) {
-          masterBoard.blinkOkLed(30);
+            masterBoard.blinkInfoLed(30);
           sendCommand(masterBoard.getId(), inputBoard->getId(), i,  responses[i] == -1 ? 0 : 1);
         }
       }
@@ -103,7 +103,7 @@ void loop() {
       if(strncmp(recvBuffer, "ping", recvBufferSize) == 0) {
         isOnline = true;
         pingTimer.sleep(PING_TIMEOUT_MS);
-        masterBoard.blinkOkLed(30);
+          masterBoard.blinkInfoLed(30);
         masterBoard.setErrorLed(false);
         char buf[32];
         snprintf(buf, 32, "%s pong", masterBoardIdStr);

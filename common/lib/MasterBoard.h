@@ -20,7 +20,7 @@ class MasterBoard {
     /// call this periodically from main loop
     void loop();
 
-    void blinkOkLed(int time);
+    void blinkInfoLed(int time);
     void setErrorLed(bool value);
 
 
