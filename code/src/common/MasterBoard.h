@@ -21,6 +21,7 @@ class MasterBoard {
     void loop();
 
     void blinkInfoLed(int time);
+    void setInfoLed(bool value);
     void setErrorLed(bool value);
 
 

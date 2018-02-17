@@ -32,6 +32,10 @@ void MasterBoard::setErrorLed(bool value) {
   digitalWrite(ERROR_LED_PIN, value ? HIGH : LOW);
 }
 
+void MasterBoard::setInfoLed(bool value) {
+  digitalWrite(INFO_LED_PIN, value ? HIGH : LOW);
+}
+
 
 void MasterBoard::blinkInfoLed(int timeMs) {
   digitalWrite(INFO_LED_PIN, HIGH);

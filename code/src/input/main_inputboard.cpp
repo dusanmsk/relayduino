@@ -37,7 +37,6 @@ void setup() {
 
   Serial.begin(9600);
   //while (!Serial);
-  dbg("PICA %d", DIP_PIN1);
 
   int masterBoardId = masterBoard.getId();
   snprintf(masterBoardIdStr, 5, "im%d", masterBoardId);
@@ -60,6 +59,18 @@ void setup() {
       connectedBoards[adr] = new InputBoard(&mcp, adr);
     }
   }
+
+  bool blink = true;
+  for(int i = 0; i < 10; i++) {
+	  masterBoard.setInfoLed(blink);
+	  masterBoard.setErrorLed(!blink);
+    blink = !blink;
+	  delay(50);
+  }
+	masterBoard.setInfoLed(false);
+	masterBoard.setErrorLed(false);
+
+  // TODO send hello {boardid} to network
 
 }
 
