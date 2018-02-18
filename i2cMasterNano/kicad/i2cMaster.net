@@ -1,7 +1,7 @@
 (export (version D)
   (design
-    (source G:/work/relayduino/i2cMasterNano/kicad/learn.sch)
-    (date "18.2.2018 14:24:40")
+    (source G:/work/relayduino/i2cMasterNano/kicad/i2cMaster.sch)
+    (date "18.2.2018 20:30:00")
     (tool "Eeschema 4.0.7")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -9,7 +9,7 @@
         (company)
         (rev)
         (date)
-        (source learn.sch)
+        (source i2cMaster.sch)
         (comment (number 1) (value ""))
         (comment (number 2) (value ""))
         (comment (number 3) (value ""))
@@ -84,7 +84,7 @@
     (comp (ref U2)
       (value Arduino_Nano_R3)
       (footprint konektory:Arduino_Nano_Ethernet)
-      (libsource (lib learn-cache) (part Arduino_Nano_R3))
+      (libsource (lib i2cMaster-cache) (part Arduino_Nano_R3))
       (sheetpath (names /) (tstamps /))
       (tstamp 5A869DFB))
     (comp (ref D2)
@@ -166,7 +166,7 @@
       (sheetpath (names /) (tstamps /))
       (tstamp 5A897D99)))
   (libparts
-    (libpart (lib learn-cache) (part Arduino_Nano_R3)
+    (libpart (lib i2cMaster-cache) (part Arduino_Nano_R3)
       (fields
         (field (name Reference) U)
         (field (name Value) Arduino_Nano_R3))
@@ -369,8 +369,8 @@
       (uri "C:\\Program Files\\KiCad\\share\\kicad\\library\\regul.lib"))
     (library (logical Switch)
       (uri C:\kicad\kicad-library-master\library\Switch.lib))
-    (library (logical learn-cache)
-      (uri G:\work\relayduino\i2cMasterNano\kicad\learn-cache.lib)))
+    (library (logical i2cMaster-cache)
+      (uri G:\work\relayduino\i2cMasterNano\kicad\i2cMaster-cache.lib)))
   (nets
     (net (code 1) (name GND)
       (node (ref J1) (pin 1))
