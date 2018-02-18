@@ -37,7 +37,7 @@
   )
 
   (setup
-    (last_trace_width 2)
+    (last_trace_width 1)
     (user_trace_width 1)
     (user_trace_width 2)
     (user_trace_width 3)
