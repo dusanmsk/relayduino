@@ -5,7 +5,7 @@
 
 #include <Ethernet.h>
 
-#define NETWORK 192, 168, 88
+#define NETWORK 192, 168, 99
 #define MASK 255,255,255,0
 #define RECV_LOCAL_PORT 6666
 #define SEND_LOCAL_PORT 6667
