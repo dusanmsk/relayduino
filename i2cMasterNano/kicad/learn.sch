@@ -308,28 +308,6 @@ F 3 "" H 1350 7150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C_Small C3
-U 1 1 5A86CD59
-P 3500 7150
-F 0 "C3" H 3510 7220 50  0000 L CNN
-F 1 "100nF" H 3510 7070 50  0000 L CNN
-F 2 "Capacitors_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 3500 7150 50  0001 C CNN
-F 3 "" H 3500 7150 50  0001 C CNN
-	1    3500 7150
-	1    0    0    -1  
-$EndComp
-$Comp
-L SW_DIP_x04 SW1
-U 1 1 5A86E37B
-P 6950 3450
-F 0 "SW1" H 6950 3800 50  0000 C CNN
-F 1 "SW_DIP_x04" H 6950 3200 50  0000 C CNN
-F 2 "Buttons_Switches_THT:SW_DIP_x4_W7.62mm_Slide" H 6950 3450 50  0001 C CNN
-F 3 "" H 6950 3450 50  0001 C CNN
-	1    6950 3450
-	1    0    0    -1  
-$EndComp
-$Comp
 L R_Network04 RN1
 U 1 1 5A86E586
 P 7650 3450
@@ -433,8 +411,6 @@ Connection ~ 1050 6250
 Wire Wire Line
 	1050 6700 1050 6900
 Connection ~ 1050 6900
-Wire Wire Line
-	1350 7400 3500 7400
 Connection ~ 2000 7400
 Wire Wire Line
 	900  6250 1300 6250
@@ -444,13 +420,8 @@ Wire Wire Line
 	3200 7000 3200 6900
 Connection ~ 3200 6900
 Wire Wire Line
-	3500 6900 3500 7050
-Connection ~ 3500 6900
-Wire Wire Line
 	3200 7400 3200 7300
 Connection ~ 2800 7400
-Wire Wire Line
-	3500 7400 3500 7250
 Connection ~ 3200 7400
 Wire Wire Line
 	1350 7000 1350 6900
@@ -464,13 +435,7 @@ Wire Wire Line
 Wire Wire Line
 	7450 3450 7250 3450
 Wire Wire Line
-	7250 3550 7450 3550
-Wire Wire Line
 	7850 3250 8100 3250
-Wire Wire Line
-	6150 3550 6650 3550
-Wire Wire Line
-	6150 3450 6650 3450
 Wire Wire Line
 	6150 3350 6650 3350
 Wire Wire Line
@@ -596,4 +561,23 @@ Text Notes 900  6000 0    157  ~ 0
 power
 Text Notes 4800 2500 0    157  ~ 0
 arduino
+$Comp
+L SW_DIP_x03 SW1
+U 1 1 5A897D99
+P 6950 3450
+F 0 "SW1" H 6950 3800 50  0000 C CNN
+F 1 "SW_DIP_x03" H 6950 3300 50  0000 C CNN
+F 2 "Buttons_Switches_THT:SW_DIP_x3_W7.62mm_Slide" H 6950 3450 50  0001 C CNN
+F 3 "" H 6950 3450 50  0001 C CNN
+	1    6950 3450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6150 3550 6450 3550
+Wire Wire Line
+	6450 3550 6450 3450
+Wire Wire Line
+	6450 3450 6650 3450
+Wire Wire Line
+	1350 7400 3200 7400
 $EndSCHEMATC
