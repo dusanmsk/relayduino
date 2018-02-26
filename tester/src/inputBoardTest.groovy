@@ -19,6 +19,7 @@ class InputMain {
     DatagramSocket recvSocket = new DatagramSocket(5555, InetAddress.getByName("0.0.0.0"))
 
     def send(String msg) {
+        println msg
         DatagramPacket dp = new DatagramPacket(msg.bytes, msg.size(), broadcastAddress, 6666);
         sendSocket.send(dp)
     }

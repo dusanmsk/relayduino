@@ -11,35 +11,54 @@ m0 b0 i16 0
 ping
 */
 
-class Main {
-    DatagramSocket socket = new DatagramSocket(6666, InetAddress.getByName("0.0.0.0"))
+class OutputMain {
+
     def broadcastAddress = Inet4Address.getByName("255.255.255.255")
+    def localAddress = Inet4Address.getByName("192.168.2.108")
+    DatagramSocket sendSocket = new DatagramSocket(12345, localAddress)
+
     def main() {
-        socket.setBroadcast(true)
+
+        Thread pingThread = new Thread(new Runnable() {
+            @Override
+            void run() {
+                while (true) {
+                    send("ping")
+                    Thread.sleep(5000)
+                }
+            }
+        })
+
+        pingThread.start()
+
         while (true) {
             for (int i = 1; i <= 16; i++) {
                 sendPort(i, 1)
+                Thread.sleep(500)
+                sendPort(i, 0)
+                Thread.sleep(500)
+                sendPort(i, 1)
+                Thread.sleep(500)
+                sendPort(i, 0)
+                Thread.sleep(500)
+                sendPort(i, 1)
                 Thread.sleep(1000)
-            }
-            send("ping")
-            for (int i = 1; i <= 16; i++) {
                 sendPort(i, 0)
                 Thread.sleep(1000)
             }
-            send("ping")
         }
     }
 
     def sendPort(port, value) {
-        send("m0 b0 i${port} ${value}")
+        send("om4 b7 r${port} ${value}")
     }
 
     def send(String msg) {
-        DatagramPacket dp = new DatagramPacket(msg.bytes, msg.size(), broadcastAddress, 6666);
-        socket.send(dp)
         println msg
+        DatagramPacket dp = new DatagramPacket(msg.bytes, msg.size(), broadcastAddress, 6666);
+        sendSocket.send(dp)
     }
 }
 
-def m = new InputMain()
+def m = new OutputMain()
 m.main()
