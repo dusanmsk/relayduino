@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir firmware
+
 pio run -e nano_input && cp .pioenvs/nano_input/firmware.hex firmware/nano_input.hex
 pio run -e nano_output && cp .pioenvs/nano_output/firmware.hex firmware/nano_output.hex
 

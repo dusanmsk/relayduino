@@ -27,6 +27,7 @@ void send(char* msg) {
   udpSend.write(outputPacketBuffer);
   udpSend.endPacket();
   udpSend.flush();
+  dbg("Sent %s", msg);
 }
 
 boolean receive(char* buffer, int bufferSize) {
