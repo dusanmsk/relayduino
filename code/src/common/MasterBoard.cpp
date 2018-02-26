@@ -3,6 +3,7 @@
 #include <Arduino.h>
 #include "Globals.h"
 #include "dbg.h"
+#include "../mega_board_id.h"
 
 MasterBoard::MasterBoard() {
 #ifdef __AVR_ATmega328P__
@@ -19,6 +20,8 @@ MasterBoard::MasterBoard() {
 	if (!digitalRead(DIP_PIN3)) {
 		this->id |= 4;
 	}
+#else
+	this->id = MEGA_BOARD_ID;
 #endif
 	pinMode(INFO_LED_PIN, OUTPUT);
 	digitalWrite(INFO_LED_PIN, LOW);
