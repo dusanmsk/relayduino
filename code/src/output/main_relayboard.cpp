@@ -106,7 +106,6 @@ void loop() {
                 relayBoard->setRelay(relayId, relayValue);
                 relayBoard->sendData();
                 dbg("Relay %d/%d set to %d", relayBoardId, relayId, relayValue)
-                masterBoard.blinkInfoLed(50);
             }
         }
     }
