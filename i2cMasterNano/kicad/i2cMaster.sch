@@ -29,7 +29,7 @@ LIBS:atmel
 LIBS:contrib
 LIBS:valves
 LIBS:Switch
-LIBS:learn-cache
+LIBS:i2cMaster-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -50,7 +50,7 @@ U 1 1 5A85EC2B
 P 950 1050
 F 0 "J1" H 950 1250 50  0000 C CNN
 F 1 "Conn_01x04_Male" H 950 750 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 950 1050 50  0001 C CNN
+F 2 "Connectors_JST:JST_EH_B04B-EH-A_04x2.50mm_Straight" H 950 1050 50  0001 C CNN
 F 3 "" H 950 1050 50  0001 C CNN
 	1    950  1050
 	1    0    0    -1  
@@ -69,7 +69,7 @@ U 1 1 5A85F636
 P 950 1650
 F 0 "J2" H 950 1850 50  0000 C CNN
 F 1 "Conn_01x04_Male" H 950 1350 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 950 1650 50  0001 C CNN
+F 2 "Connectors_JST:JST_EH_B04B-EH-A_04x2.50mm_Straight" H 950 1650 50  0001 C CNN
 F 3 "" H 950 1650 50  0001 C CNN
 	1    950  1650
 	1    0    0    -1  
@@ -88,7 +88,7 @@ U 1 1 5A85F765
 P 950 2250
 F 0 "J3" H 950 2450 50  0000 C CNN
 F 1 "Conn_01x04_Male" H 950 1950 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 950 2250 50  0001 C CNN
+F 2 "Connectors_JST:JST_EH_B04B-EH-A_04x2.50mm_Straight" H 950 2250 50  0001 C CNN
 F 3 "" H 950 2250 50  0001 C CNN
 	1    950  2250
 	1    0    0    -1  
@@ -107,7 +107,7 @@ U 1 1 5A85F773
 P 950 2850
 F 0 "J4" H 950 3050 50  0000 C CNN
 F 1 "Conn_01x04_Male" H 950 2550 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 950 2850 50  0001 C CNN
+F 2 "Connectors_JST:JST_EH_B04B-EH-A_04x2.50mm_Straight" H 950 2850 50  0001 C CNN
 F 3 "" H 950 2850 50  0001 C CNN
 	1    950  2850
 	1    0    0    -1  
@@ -126,7 +126,7 @@ U 1 1 5A85F88D
 P 950 3450
 F 0 "J5" H 950 3650 50  0000 C CNN
 F 1 "Conn_01x04_Male" H 950 3150 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 950 3450 50  0001 C CNN
+F 2 "Connectors_JST:JST_EH_B04B-EH-A_04x2.50mm_Straight" H 950 3450 50  0001 C CNN
 F 3 "" H 950 3450 50  0001 C CNN
 	1    950  3450
 	1    0    0    -1  
@@ -145,7 +145,7 @@ U 1 1 5A85F89B
 P 950 4050
 F 0 "J6" H 950 4250 50  0000 C CNN
 F 1 "Conn_01x04_Male" H 950 3750 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 950 4050 50  0001 C CNN
+F 2 "Connectors_JST:JST_EH_B04B-EH-A_04x2.50mm_Straight" H 950 4050 50  0001 C CNN
 F 3 "" H 950 4050 50  0001 C CNN
 	1    950  4050
 	1    0    0    -1  
@@ -164,7 +164,7 @@ U 1 1 5A85F8A9
 P 950 4650
 F 0 "J7" H 950 4850 50  0000 C CNN
 F 1 "Conn_01x04_Male" H 950 4350 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 950 4650 50  0001 C CNN
+F 2 "Connectors_JST:JST_EH_B04B-EH-A_04x2.50mm_Straight" H 950 4650 50  0001 C CNN
 F 3 "" H 950 4650 50  0001 C CNN
 	1    950  4650
 	1    0    0    -1  
@@ -183,7 +183,7 @@ U 1 1 5A85F8B7
 P 950 5250
 F 0 "J8" H 950 5450 50  0000 C CNN
 F 1 "Conn_01x04_Male" H 950 4950 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 950 5250 50  0001 C CNN
+F 2 "Connectors_JST:JST_EH_B04B-EH-A_04x2.50mm_Straight" H 950 5250 50  0001 C CNN
 F 3 "" H 950 5250 50  0001 C CNN
 	1    950  5250
 	1    0    0    -1  
