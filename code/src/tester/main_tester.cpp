@@ -3,12 +3,21 @@
 #include "Wire.h"
 #include "../common/mcp.h"
 #include "../common/dbg.h"
+#include "../common/Globals.h"
 
 Adafruit_MCP23017 mcp_out;
 Adafruit_MCP23017 mcp_in;
 int outputId = -1;
 int inputId = -1;
 
+
+
+void error() {
+    dbgn("\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n    ERROR\n\n !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
+    digitalWrite(INFO_LED_PIN, LOW);
+    digitalWrite(ERROR_LED_PIN, HIGH);
+    delay(10000000);
+}
 
 void setOutputs(String outputs) {
     mcp_out.begin(outputId);
@@ -37,13 +46,17 @@ void checkPattern(char* pattern, int sleepTime) {
     dbg("Checking %s", pattern);
     String out(pattern);
     setOutputs(out);
+    digitalWrite(INFO_LED_PIN, HIGH);
     delay(10);
+    digitalWrite(INFO_LED_PIN, LOW);
     String ret1 = readInputs();
     delay(sleepTime);
     String ret2 = readInputs();
     if(! (ret1.equals(out) && ret2.equals(out))) {
-        dbg("ERROR !!!! Pattern\n%s failed as\n%s\n\n !!!!!!!!!!!!!!!!!!!!!!!!!!!\n", pattern, ret2.c_str());
-        delay(1000000);
+        pinMode(ERROR_LED_PIN, OUTPUT);
+        digitalWrite(ERROR_LED_PIN, HIGH);
+        dbg("Pattern\n%s failed as\n%s\n", pattern, ret2.c_str());
+        error();
     }
 }
 
@@ -53,6 +66,9 @@ void setup() {
 
     Serial.begin(9600);
     Serial.println("Make sure inputboard has higher address than output board");
+
+    pinMode(INFO_LED_PIN, OUTPUT);
+    pinMode(ERROR_LED_PIN, OUTPUT);
 
     Wire.begin();
     for (int i = 0; i < 8; i++) {
@@ -69,8 +85,8 @@ void setup() {
     }
 
     if(outputId == -1 || inputId == -1) {
-        dbgn("Boards not found, fix and reset")
-        delay(100000);
+        dbgn("Boards not found, fix and reset");
+        error();
     }
 
     dbg("Output board address: %d", outputId);
@@ -117,8 +133,10 @@ void loop() {
         checkPattern(pattern, 300);
     }
 
+    pinMode(INFO_LED_PIN, OUTPUT);
+    digitalWrite(INFO_LED_PIN, HIGH);
     dbgn("\n\n---------------------------------------------------\n    BOARDS ARE OK\n---------------------------------------------------\n\n");
-    delay(10000);
+    delay(100000);
 
 
 }
