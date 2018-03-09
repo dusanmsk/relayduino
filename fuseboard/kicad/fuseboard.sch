@@ -1,0 +1,413 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:fuseboard-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Conn_01x02 J2
+U 1 1 5AA2B52F
+P 2150 2900
+F 0 "J2" H 2150 3000 50  0000 C CNN
+F 1 "Conn_01x02" H 2150 2700 50  0000 C CNN
+F 2 "konektory:MSK-2x5.08_terminal" H 2150 2900 50  0001 C CNN
+F 3 "" H 2150 2900 50  0001 C CNN
+	1    2150 2900
+	0    1    1    0   
+$EndComp
+Text GLabel 2050 2500 1    60   Input ~ 0
+VIN
+$Comp
+L GND #PWR01
+U 1 1 5AA2B70F
+P 2400 2700
+F 0 "#PWR01" H 2400 2450 50  0001 C CNN
+F 1 "GND" H 2400 2550 50  0000 C CNN
+F 2 "" H 2400 2700 50  0001 C CNN
+F 3 "" H 2400 2700 50  0001 C CNN
+	1    2400 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2150 2700 2150 2600
+Wire Wire Line
+	2150 2600 2400 2600
+Wire Wire Line
+	2400 2600 2400 2700
+Wire Wire Line
+	2050 2500 2050 2700
+$Comp
+L Conn_01x02 J1
+U 1 1 5AA2B838
+P 1250 2900
+F 0 "J1" H 1250 3000 50  0000 C CNN
+F 1 "Conn_01x02" H 1250 2700 50  0000 C CNN
+F 2 "konektory:MSK-2x5.08_terminal" H 1250 2900 50  0001 C CNN
+F 3 "" H 1250 2900 50  0001 C CNN
+	1    1250 2900
+	0    1    1    0   
+$EndComp
+Text GLabel 1150 2500 1    60   Input ~ 0
+VIN
+$Comp
+L GND #PWR02
+U 1 1 5AA2B83F
+P 1500 2700
+F 0 "#PWR02" H 1500 2450 50  0001 C CNN
+F 1 "GND" H 1500 2550 50  0000 C CNN
+F 2 "" H 1500 2700 50  0001 C CNN
+F 3 "" H 1500 2700 50  0001 C CNN
+	1    1500 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 2700 1250 2600
+Wire Wire Line
+	1250 2600 1500 2600
+Wire Wire Line
+	1500 2600 1500 2700
+Wire Wire Line
+	1150 2500 1150 2700
+$Comp
+L Fuse F1
+U 1 1 5AA2B85F
+P 3150 2450
+F 0 "F1" V 3230 2450 50  0000 C CNN
+F 1 "Fuse" V 3075 2450 50  0000 C CNN
+F 2 "Fuse_Holders_and_Fuses:Fuseholder5x20_horiz_open_Schurter_0031_8201" V 3080 2450 50  0001 C CNN
+F 3 "" H 3150 2450 50  0001 C CNN
+	1    3150 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x02 J3
+U 1 1 5AA2B8C1
+P 3100 1550
+F 0 "J3" H 3100 1650 50  0000 C CNN
+F 1 "Conn_01x02" H 3100 1350 50  0000 C CNN
+F 2 "konektory:MSK-2x5.08_terminal" H 3100 1550 50  0001 C CNN
+F 3 "" H 3100 1550 50  0001 C CNN
+	1    3100 1550
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3100 1750 3100 1800
+Wire Wire Line
+	3100 1800 3200 1800
+Wire Wire Line
+	3150 1800 3150 2300
+Wire Wire Line
+	3200 1800 3200 1750
+Connection ~ 3150 1800
+$Comp
+L LED D1
+U 1 1 5AA2BB62
+P 3300 2050
+F 0 "D1" H 3300 2150 50  0000 C CNN
+F 1 "LED" H 3300 1950 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 3300 2050 50  0001 C CNN
+F 3 "" H 3300 2050 50  0001 C CNN
+	1    3300 2050
+	0    -1   -1   0   
+$EndComp
+Connection ~ 3150 1900
+$Comp
+L GND #PWR03
+U 1 1 5AA2BBDB
+P 3300 2700
+F 0 "#PWR03" H 3300 2450 50  0001 C CNN
+F 1 "GND" H 3300 2550 50  0000 C CNN
+F 2 "" H 3300 2700 50  0001 C CNN
+F 3 "" H 3300 2700 50  0001 C CNN
+	1    3300 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3150 1900 3300 1900
+$Comp
+L R R1
+U 1 1 5AA2BD10
+P 3300 2450
+F 0 "R1" V 3380 2450 50  0000 C CNN
+F 1 "220" V 3300 2450 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 3230 2450 50  0001 C CNN
+F 3 "" H 3300 2450 50  0001 C CNN
+	1    3300 2450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3300 2600 3300 2700
+Wire Wire Line
+	3300 2300 3300 2200
+Text GLabel 3150 2700 3    60   Input ~ 0
+VIN
+Wire Wire Line
+	3150 2700 3150 2600
+$Comp
+L Fuse F2
+U 1 1 5AA2BE7C
+P 3600 2450
+F 0 "F2" V 3680 2450 50  0000 C CNN
+F 1 "Fuse" V 3525 2450 50  0000 C CNN
+F 2 "Fuse_Holders_and_Fuses:Fuseholder5x20_horiz_open_Schurter_0031_8201" V 3530 2450 50  0001 C CNN
+F 3 "" H 3600 2450 50  0001 C CNN
+	1    3600 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x02 J4
+U 1 1 5AA2BE82
+P 3550 1550
+F 0 "J4" H 3550 1650 50  0000 C CNN
+F 1 "Conn_01x02" H 3550 1350 50  0000 C CNN
+F 2 "konektory:MSK-2x5.08_terminal" H 3550 1550 50  0001 C CNN
+F 3 "" H 3550 1550 50  0001 C CNN
+	1    3550 1550
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3550 1750 3550 1800
+Wire Wire Line
+	3550 1800 3650 1800
+Wire Wire Line
+	3600 1800 3600 2300
+Wire Wire Line
+	3650 1800 3650 1750
+Connection ~ 3600 1800
+$Comp
+L LED D2
+U 1 1 5AA2BE8D
+P 3750 2050
+F 0 "D2" H 3750 2150 50  0000 C CNN
+F 1 "LED" H 3750 1950 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 3750 2050 50  0001 C CNN
+F 3 "" H 3750 2050 50  0001 C CNN
+	1    3750 2050
+	0    -1   -1   0   
+$EndComp
+Connection ~ 3600 1900
+$Comp
+L GND #PWR04
+U 1 1 5AA2BE94
+P 3750 2700
+F 0 "#PWR04" H 3750 2450 50  0001 C CNN
+F 1 "GND" H 3750 2550 50  0000 C CNN
+F 2 "" H 3750 2700 50  0001 C CNN
+F 3 "" H 3750 2700 50  0001 C CNN
+	1    3750 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3600 1900 3750 1900
+$Comp
+L R R2
+U 1 1 5AA2BE9B
+P 3750 2450
+F 0 "R2" V 3830 2450 50  0000 C CNN
+F 1 "220" V 3750 2450 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 3680 2450 50  0001 C CNN
+F 3 "" H 3750 2450 50  0001 C CNN
+	1    3750 2450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3750 2600 3750 2700
+Wire Wire Line
+	3750 2300 3750 2200
+Text GLabel 3600 2700 3    60   Input ~ 0
+VIN
+Wire Wire Line
+	3600 2700 3600 2600
+$Comp
+L Fuse F3
+U 1 1 5AA2C081
+P 4000 2450
+F 0 "F3" V 4080 2450 50  0000 C CNN
+F 1 "Fuse" V 3925 2450 50  0000 C CNN
+F 2 "Fuse_Holders_and_Fuses:Fuseholder5x20_horiz_open_Schurter_0031_8201" V 3930 2450 50  0001 C CNN
+F 3 "" H 4000 2450 50  0001 C CNN
+	1    4000 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x02 J5
+U 1 1 5AA2C087
+P 3950 1550
+F 0 "J5" H 3950 1650 50  0000 C CNN
+F 1 "Conn_01x02" H 3950 1350 50  0000 C CNN
+F 2 "konektory:MSK-2x5.08_terminal" H 3950 1550 50  0001 C CNN
+F 3 "" H 3950 1550 50  0001 C CNN
+	1    3950 1550
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3950 1750 3950 1800
+Wire Wire Line
+	3950 1800 4050 1800
+Wire Wire Line
+	4000 1800 4000 2300
+Wire Wire Line
+	4050 1800 4050 1750
+Connection ~ 4000 1800
+$Comp
+L LED D3
+U 1 1 5AA2C092
+P 4150 2050
+F 0 "D3" H 4150 2150 50  0000 C CNN
+F 1 "LED" H 4150 1950 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 4150 2050 50  0001 C CNN
+F 3 "" H 4150 2050 50  0001 C CNN
+	1    4150 2050
+	0    -1   -1   0   
+$EndComp
+Connection ~ 4000 1900
+$Comp
+L GND #PWR05
+U 1 1 5AA2C099
+P 4150 2700
+F 0 "#PWR05" H 4150 2450 50  0001 C CNN
+F 1 "GND" H 4150 2550 50  0000 C CNN
+F 2 "" H 4150 2700 50  0001 C CNN
+F 3 "" H 4150 2700 50  0001 C CNN
+	1    4150 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4000 1900 4150 1900
+$Comp
+L R R3
+U 1 1 5AA2C0A0
+P 4150 2450
+F 0 "R3" V 4230 2450 50  0000 C CNN
+F 1 "220" V 4150 2450 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 4080 2450 50  0001 C CNN
+F 3 "" H 4150 2450 50  0001 C CNN
+	1    4150 2450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4150 2600 4150 2700
+Wire Wire Line
+	4150 2300 4150 2200
+Text GLabel 4000 2700 3    60   Input ~ 0
+VIN
+Wire Wire Line
+	4000 2700 4000 2600
+$Comp
+L Fuse F4
+U 1 1 5AA2C0AA
+P 4450 2450
+F 0 "F4" V 4530 2450 50  0000 C CNN
+F 1 "Fuse" V 4375 2450 50  0000 C CNN
+F 2 "Fuse_Holders_and_Fuses:Fuseholder5x20_horiz_open_Schurter_0031_8201" V 4380 2450 50  0001 C CNN
+F 3 "" H 4450 2450 50  0001 C CNN
+	1    4450 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x02 J6
+U 1 1 5AA2C0B0
+P 4400 1550
+F 0 "J6" H 4400 1650 50  0000 C CNN
+F 1 "Conn_01x02" H 4400 1350 50  0000 C CNN
+F 2 "konektory:MSK-2x5.08_terminal" H 4400 1550 50  0001 C CNN
+F 3 "" H 4400 1550 50  0001 C CNN
+	1    4400 1550
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4400 1750 4400 1800
+Wire Wire Line
+	4400 1800 4500 1800
+Wire Wire Line
+	4450 1800 4450 2300
+Wire Wire Line
+	4500 1800 4500 1750
+Connection ~ 4450 1800
+$Comp
+L LED D4
+U 1 1 5AA2C0BB
+P 4600 2050
+F 0 "D4" H 4600 2150 50  0000 C CNN
+F 1 "LED" H 4600 1950 50  0000 C CNN
+F 2 "LEDs:LED_D3.0mm" H 4600 2050 50  0001 C CNN
+F 3 "" H 4600 2050 50  0001 C CNN
+	1    4600 2050
+	0    -1   -1   0   
+$EndComp
+Connection ~ 4450 1900
+$Comp
+L GND #PWR06
+U 1 1 5AA2C0C2
+P 4600 2700
+F 0 "#PWR06" H 4600 2450 50  0001 C CNN
+F 1 "GND" H 4600 2550 50  0000 C CNN
+F 2 "" H 4600 2700 50  0001 C CNN
+F 3 "" H 4600 2700 50  0001 C CNN
+	1    4600 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 1900 4600 1900
+$Comp
+L R R4
+U 1 1 5AA2C0C9
+P 4600 2450
+F 0 "R4" V 4680 2450 50  0000 C CNN
+F 1 "220" V 4600 2450 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 4530 2450 50  0001 C CNN
+F 3 "" H 4600 2450 50  0001 C CNN
+	1    4600 2450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 2600 4600 2700
+Wire Wire Line
+	4600 2300 4600 2200
+Text GLabel 4450 2700 3    60   Input ~ 0
+VIN
+Wire Wire Line
+	4450 2700 4450 2600
+$EndSCHEMATC
