@@ -1,5 +1,33 @@
 # Content
 
+# Preparation
+
+Arduino Nano is the actual platform. To sucessfully use arduino nano on masterboard you need
+to flash optiboot bootloader to it. There is script which uploads optiboot to arduino nano using usbtiny in code/bootloader.
+It requires usbtinyisp board connected to arduino nano and arduino ide to be installed. Flash take around 3 seconds.
+
+When done, connect arduino nano using usb cable to pc and use XLoader utility to flash required firmware.
+Use input or outputmaster_firmware_nano328.hex files, setup xloader as following:
+- hex file: specify firmware file
+- device: Uno (atmega 328)
+- com port: where your nano is
+- baud rade: 115200
+
+Leds will flash during update.
+
+To check nano was flashed succesfully, close xloader, then start arduino ide, choose board "Adruino/Genuino UNO", specify port
+and start serial monitor. If you will see messages such as:
+
+Master board id: im0
+Assigned address: 192.168.88.120
+No ping - connection lost?
+...
+
+you have flashed sucessfully.
+   
+ 
+
+
 TODO
 
 # How to connect
