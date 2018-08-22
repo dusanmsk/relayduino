@@ -16,7 +16,7 @@ Use input or outputmaster_firmware_nano328.hex files, setup xloader as following
 Leds will flash during update.
 
 To check nano was flashed succesfully, close xloader, then start arduino ide, choose board "Adruino/Genuino UNO", specify port
-and start serial monitor. If you will see messages such as:
+and start serial monitor at 9600 baud. If you will see messages such as:
 
 Master board id: im0
 Assigned address: 192.168.88.120
