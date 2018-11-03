@@ -16,13 +16,15 @@
  - find all input boards
  */
 
-char recvBuffer[recvBufferSize];
 
 MasterBoard masterBoard;
 Timer pingTimer;
 
 char masterBoardIdStr[5];
 int masterBoardIdStrLen;
+
+char recvBuffer[recvBufferSize];
+char sendBuffer[sendBufferSize];
 
 #define NUM_OF_INPUT_BOARDS 8
 
@@ -33,7 +35,7 @@ void (*uglyResetTheBoard)(void) = 0; //declare reset function @ address 0 - ugly
 void setup() {
 
 	Serial.begin(9600);
-	//while (!Serial);
+	while (!Serial);
 
 	int masterBoardId = masterBoard.getId();
 	snprintf(masterBoardIdStr, 5, "im%d", masterBoardId);
@@ -60,9 +62,8 @@ void setup() {
 	masterBoard.initBlink();
 
 	// send hello
-	char buf[32];
-	snprintf(buf, 32, "hello im%d", masterBoardId);
-	send(buf);
+	snprintf(sendBuffer, sendBufferSize, "hello im%d", masterBoardId);
+	send(sendBuffer);
 }
 
 void sendCommand(int masterBoardId, int inputBoardId, int inputId, int value) {
@@ -95,8 +96,8 @@ void loop() {
 	}
 
 	// process ping
-	if (receive(recvBuffer, recvBufferSize)) {
-		//dbg("Received %s", recvBuffer)
+	if(receiveMessage(recvBuffer, recvBufferSize)){
+		dbg("Received %s", recvBuffer);
 
 		// process ping command
 		if (strncmp(recvBuffer, "ping", recvBufferSize) == 0) {
@@ -104,11 +105,11 @@ void loop() {
 			pingTimer.sleep(PING_TIMEOUT_MS);
 			masterBoard.blinkInfoLed(30);
 			masterBoard.setErrorLed(false);
-			char buf[32];
-			snprintf(buf, 32, "%s pong", masterBoardIdStr);
-			send(buf);
+			snprintf(sendBuffer, sendBufferSize, "%s pong", masterBoardIdStr);
+			send(sendBuffer);
 		}
 	}
+	
 
 	// process ping timeout - possible connection lost - turn everything off immediately
 	if (pingTimer.isOver()) {
@@ -124,4 +125,5 @@ void loop() {
 	}
 
 	masterBoard.loop();
+
 }

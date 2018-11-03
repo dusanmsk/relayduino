@@ -7,18 +7,17 @@
 
 #define NETWORK 192, 168, 99
 #define MASK 255,255,255,0
-#define RECV_LOCAL_PORT 6666
-#define SEND_LOCAL_PORT 6667
+#define LISTEN_PORT 6666
 #define LOXONE_PORT 5555
-#define SEND_IP_ADDRESS "255.255.255.255"
+const IPAddress SEND_IP_ADDRESS(192,168,99,255);
 
 
 
-#define recvBufferSize UDP_TX_PACKET_MAX_SIZE
-#define outputPacketBufferSize 128
+#define recvBufferSize 64
+#define sendBufferSize 64
 
 void initNetwork(int mainBoardId);
 void send(char* msg);
-boolean receive(char* buffer, int bufferSize);
+bool receiveMessage(char* buffer, int bufferSize);
 
 #endif
