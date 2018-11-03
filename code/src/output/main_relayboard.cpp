@@ -2,19 +2,14 @@
  With UDP syntax of commands changed a bit, because it must contain master board id.
 
  Example command:
- m1 b2 r3 1
+ om0 b2 r3 1;
 
  Means:
- Set master board 1 -> slave board 2 -> relay 3 -> on
+ Set master board 0 -> slave board 2 -> relay 3 -> on
 
  */
 
-// TODO make ifdef mega/nanoatmega328
-//#define OK_LED_PIN 28
-//#define ERROR_LED_PIN 36
-// TODO nano set proper pins
-//#define OK_LED_PIN 14
-//#define ERROR_LED_PIN 14
+#include "../release.h"
 #include "../common/Globals.h"
 #include "../common/MasterBoard.h"
 #include "../common/dbg.h"
@@ -24,15 +19,7 @@
 #include "../common/mcp.h"
 #include "RelayBoard.h"
 #include "../common/Timer.h"
-
 #include "../common/networking.h"
-char recvBuffer[recvBufferSize];
-
-/*
- TODO:
- - receive commands as udp broadcasts
- - receive and response on ping commands by udp broadcasts
- */
 
 MasterBoard masterBoard;
 Timer pingTimer;
@@ -43,6 +30,9 @@ RelayBoard* relayBoards[NUM_OF_RELAY_BOARDS] = { new RelayBoard(0), new RelayBoa
 int masterBoardId;
 char masterBoardIdStr[5];
 int masterBoardIdStrLen;
+
+char recvBuffer[recvBufferSize];
+char sendBuffer[sendBufferSize];
 
 int failedPings = 0;
 
@@ -59,6 +49,16 @@ void setup() {
     // relayboards starts at 192.168.100.140
     initNetwork(140 + masterBoardId);
 
+    int error;
+    Wire.begin();
+	for (int adr = 0; adr < NUM_OF_RELAY_BOARDS; adr++) {
+		Wire.beginTransmission(adr + MCP23017_ADDRESS);
+		error = Wire.endTransmission();
+		if (error == 0) {
+			dbg("Found output board at address: %d", adr);
+		}
+	}
+
     // initialize relay boards
     for (int i = 0; i < NUM_OF_RELAY_BOARDS; i++) {
         RelayBoard* relayBoard = relayBoards[i];
@@ -69,9 +69,8 @@ void setup() {
     masterBoard.initBlink();
 
     // send hello
-    char buf[32];
-    snprintf(buf, 32, "hello om%d", masterBoardId);
-    send(buf);
+	snprintf(sendBuffer, sendBufferSize, "hello om%d", masterBoardId);
+	send(sendBuffer);
 
 }
 
@@ -80,19 +79,18 @@ int relayBoardId, relayId, relayValue, parsedArgs, parsedMasterBoardId;
 boolean isOnline;
 
 void loop() {
-    if (receive(recvBuffer, recvBufferSize)) {
+    if (receiveMessage(recvBuffer, recvBufferSize)) {
         //dbg("Received %s", recvBuffer)
 
-        // process ping command
-        if (strncmp(recvBuffer, "ping", recvBufferSize) == 0) {
-            isOnline = true;
-            pingTimer.sleep(PING_TIMEOUT_MS);
-            masterBoard.blinkInfoLed(30);
-            masterBoard.setErrorLed(false);
-            char buf[32];
-            snprintf(buf, 32, "%s pong", masterBoardIdStr);
-            send(buf);
-        }
+       	// process ping command
+		if (strncmp(recvBuffer, "ping", recvBufferSize) == 0) {
+			isOnline = true;
+			pingTimer.sleep(PING_TIMEOUT_MS);
+			masterBoard.blinkInfoLed(30);
+			masterBoard.setErrorLed(false);
+			snprintf(sendBuffer, sendBufferSize, "%s pong", masterBoardIdStr);
+			send(sendBuffer);
+		}
 
         // if it was not ping command, check if command is for this masterboard
         else if (strncmp(recvBuffer, masterBoardIdStr, masterBoardIdStrLen) == 0) {

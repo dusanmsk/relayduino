@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include "Globals.h"
 #include "dbg.h"
-#include "../mega_board_id.h"
+#include "../release.h"
 
 MasterBoard::MasterBoard() {
 #ifdef __AVR_ATmega328P__

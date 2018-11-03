@@ -13,8 +13,8 @@ class InputMain {
      */
     def data = []
 
-    def broadcastAddress = Inet4Address.getByName("255.255.255.255")
-    def localAddress = Inet4Address.getByName("192.168.2.108")
+    def broadcastAddress = Inet4Address.getByName("192.168.10.55")//("255.255.255.255")
+    def localAddress = Inet4Address.getByName("192.168.10.109")
     DatagramSocket sendSocket = new DatagramSocket(12345, localAddress)
     DatagramSocket recvSocket = new DatagramSocket(5555, InetAddress.getByName("0.0.0.0"))
 

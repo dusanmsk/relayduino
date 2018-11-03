@@ -13,8 +13,10 @@ ping
 
 class OutputMain {
 
+    def relayInterval = 30
+
     def broadcastAddress = Inet4Address.getByName("255.255.255.255")
-    def localAddress = Inet4Address.getByName("192.168.2.108")
+    def localAddress = Inet4Address.getByName("192.168.10.21")
     DatagramSocket sendSocket = new DatagramSocket(12345, localAddress)
 
     def main() {
@@ -23,7 +25,7 @@ class OutputMain {
             @Override
             void run() {
                 while (true) {
-                    send("ping")
+                    send("ping;")
                     Thread.sleep(5000)
                 }
             }
@@ -34,23 +36,23 @@ class OutputMain {
         while (true) {
             for (int i = 1; i <= 16; i++) {
                 sendPort(i, 1)
-                Thread.sleep(500)
+                Thread.sleep(relayInterval)
                 sendPort(i, 0)
-                Thread.sleep(500)
+                Thread.sleep(relayInterval)
                 sendPort(i, 1)
-                Thread.sleep(500)
+                Thread.sleep(relayInterval)
                 sendPort(i, 0)
-                Thread.sleep(500)
+                Thread.sleep(relayInterval)
                 sendPort(i, 1)
-                Thread.sleep(1000)
+                Thread.sleep(relayInterval*2)
                 sendPort(i, 0)
-                Thread.sleep(1000)
+                Thread.sleep(relayInterval*2)
             }
         }
     }
 
     def sendPort(port, value) {
-        send("om4 b7 r${port} ${value}")
+        send("om0 b0 r${port} ${value};")
     }
 
     def send(String msg) {

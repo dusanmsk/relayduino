@@ -21,7 +21,7 @@ void initNetwork(int addressOffset) {
 void send(char* msg) {
   dbg("Sending %s", msg)
   udp.beginPacket(SEND_IP_ADDRESS, LOXONE_PORT);
-  udp.print(msg);
+  udp.println(msg);
   udp.endPacket();
   dbg("Sent %s", msg);
 }
@@ -29,11 +29,11 @@ void send(char* msg) {
 bool receiveMessage(char* buffer, int bufferSize) {
    int packetSize = udp.parsePacket();
    if(packetSize > 0) {
-       memset(buffer, 0, bufferSize);
-       udp.readBytesUntil(';', buffer,bufferSize);
-        udp.flush();
-        return true;
-       }
+       memset(buffer, 0, bufferSize-1);
+       udp.readBytesUntil(';', buffer,bufferSize-1);
+       udp.flush();
+       return true;
+     }
      
      return false;
 }
