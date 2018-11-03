@@ -1,3 +1,4 @@
+#include "../release.h"
 #include "../common/Globals.h"
 #include "../common/MasterBoard.h"
 #include "../common/dbg.h"
